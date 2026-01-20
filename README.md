@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img width="440" height="340" alt="opeimg" src="https://github.com/user-attachments/assets/69e71944-eb7d-4791-8424-ba6d93fc2af2" />
+</p>
+
 # Guia de Instalação do OpenVAS (GVM) com Docker Compose no Ubuntu 24.04
 
 Este guia detalha o método oficial e mais confiável para instalar o Greenbone Vulnerability Manager (GVM/OpenVAS) usando o Docker Compose. Esta abordagem evita os problemas complexos de compilação e dependências.
