@@ -24,7 +24,8 @@ sudo apt-get autoremove -y
 ```
 # Remover diretórios de dados e logs antigos
 sudo rm -rf /var/lib/gvm /var/lib/openvas /var/lib/notus /var/log/gvm
-
+```
+```
 # Remover contêineres Docker antigos, se existirem
 docker rm -f gvmd &>/dev/null
 ```
