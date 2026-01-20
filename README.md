@@ -15,18 +15,19 @@ Este guia detalha o método oficial e mais confiável para instalar o Greenbone 
 
 Se você já tentou instalar o GVM por outros métodos, é crucial remover todos os vestígios para evitar conflitos.
 
-´´´bash
+```bash
 # Parar e remover quaisquer serviços antigos
 sudo systemctl stop gsad gvmd ospd-openvas openvasd postgresql redis-server &>/dev/null
 sudo apt-get purge -y gvm greenbone-security-assistant gsad gvmd notus-scanner openvas-scanner ospd-openvas
 sudo apt-get autoremove -y
-
+```
+```
 # Remover diretórios de dados e logs antigos
 sudo rm -rf /var/lib/gvm /var/lib/openvas /var/lib/notus /var/log/gvm
 
 # Remover contêineres Docker antigos, se existirem
 docker rm -f gvmd &>/dev/null
-´´´
+```
 
 ### Passo 2: Instalar o Docker e o Docker Compose
 
