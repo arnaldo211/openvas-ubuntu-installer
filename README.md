@@ -35,33 +35,33 @@ docker rm -f gvmd &>/dev/null
 O GVM será executado dentro de contêineres Docker, que fornecem um ambiente isolado e pré-configurado.
 
 1.  **Atualize a lista de pacotes:**
-    ´´´bash
+    ```bash
     sudo apt-get update
-    ´´´
+    ```
 
 2.  **Instale o Docker e suas dependências:**
-    ´´´bash
+    ```bash
     sudo apt-get install -y docker.io
-    ´´´
+    ```
 
 3.  **Inicie e habilite o serviço do Docker:**
     Isso garante que o Docker inicie automaticamente com o sistema.
-    ´´´bash
+    ```bash
     sudo systemctl start docker
     sudo systemctl enable docker
-    ´´´
+    ```
 
 4.  **Instale o Docker Compose (v2):**
     Esta ferramenta orquestra múltiplos contêineres, o que é essencial para o GVM.
-    ´´´bash
+    ```bash
     sudo apt-get install -y docker-compose-v2
-    ´´´
+    ```
 
 5.  **Adicione seu usuário ao grupo `docker`:**
     Isso permite que você execute comandos Docker sem precisar usar `sudo` todas as vezes.
-    ´´´bash
+    ```bash
     sudo usermod -aG docker $USER
-    ´´´
+    ```
 
 6.  **Aplique as alterações de grupo:**
     **IMPORTANTE:** Você precisa fazer **logout e login novamente** na sua sessão de terminal (ou reiniciar a máquina) para que a adição ao grupo `docker` tenha efeito.
@@ -72,16 +72,16 @@ Agora que o ambiente Docker está pronto, vamos usar o arquivo de configuração
 
 1.  **Crie um diretório para o seu projeto GVM:**
     É uma boa prática manter os arquivos de configuração organizados.
-    ´´´bash
+    ```bash
     mkdir ~/greenbone-gvm
     cd ~/greenbone-gvm
-    ´´´
+    ```
 
 2.  **Baixe o arquivo `docker-compose.yml` oficial:**
     Este arquivo contém as instruções para o Docker sobre quais contêineres baixar e como configurá-los para se comunicarem.
-    ´´´bash
+    ```bash
     curl -f -L https://greenbone.github.io/docs/latest/_static/docker-compose-22.4.yml -o docker-compose.yml
-    ´´´
+    ```
 
 3.  **Inicie a pilha de contêineres:**
     Este comando é o coração do processo. Ele irá:
@@ -89,9 +89,9 @@ Agora que o ambiente Docker está pronto, vamos usar o arquivo de configuração
     *   Criar e iniciar os contêineres em segundo plano (`-d` ).
     *   Configurar a rede interna para que eles se comuniquem.
 
-    ´´´bash
+    ```bash
     docker compose -f docker-compose.yml -p greenbone-community-edition up -d
-    ´´´
+    ```
     **Nota:** O primeiro download pode demorar bastante. Se você encontrar um erro de `timeout`, como vimos em nossa depuração, simplesmente execute o comando novamente. O Docker é inteligente e continuará de onde parou.
 
 ### Passo 4: Sincronização Inicial e Acesso
@@ -102,9 +102,9 @@ Após o comando `docker compose up` terminar, os contêineres estarão rodando, 
 
 2.  **Monitore o Progresso (Opcional):**
     Você pode acompanhar os logs do contêiner `gvmd` para ver o que ele está fazendo.
-    ´´´bash
+    ```bash
     docker logs -f greenbone-community-edition-gvmd-1
-    ´´´
+    ```
     Procure por mensagens sobre "updating" ou "loading". Pressione `Ctrl + C` para sair dos logs.
 
 3.  **Acesse a Interface Web:**
@@ -123,17 +123,17 @@ Após o comando `docker compose up` terminar, os contêineres estarão rodando, 
 
 *   **Para parar todos os serviços do GVM:**
     (Execute de dentro do diretório `~/greenbone-gvm`)
-    ´´´bash
+    ```bash
     docker compose down
-    ´´´
+    ```
 
 *   **Para iniciar todos os serviços do GVM novamente:**
     (Execute de dentro do diretório `~/greenbone-gvm`)
-    ´´´bash
+    ```bash
     docker compose up -d
-    ´´´
+    ```
 
 *   **Para ver o status de todos os contêineres:**
-    ´´´bash
+    ```bash
     docker ps
-    ´´´
+    ```
